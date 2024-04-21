@@ -4,6 +4,25 @@ const AddCoffee = () => {
   const handleAddCoffee = (event) => {
     event.preventDefault();
     const form = event.target;
+
+    const name = form.name.value;
+    const quantity = form.quantity.value;
+    const supplier = form.supplier.value;
+    const taste = form.taste.value;
+    const category = form.category.value;
+    const details = form.details.value;
+    const photoURL = form.photoURL.value;
+
+    const newCoffee = {
+      name,
+      quantity,
+      supplier,
+      taste,
+      category,
+      details,
+      photoURL,
+    };
+    console.log(newCoffee);
   };
   return (
     <div>
@@ -107,7 +126,7 @@ const AddCoffee = () => {
             </div>
           </div>
 
-          <div className="form-control mt-6">
+          <div className="form-control pt-5">
             <input
               type="submit"
               value="Add Coffee"
