@@ -13,8 +13,23 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         // new user has been created
-        const user = result.user;
-        console.log(user);
+        console.log(result.user);
+        const createdAt = result.user?.metadata?.creationTime; //create time to set database
+        const user = { email, createdAt }; //user info object to send database
+        // send to server
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              console.log("User added to the database");
+            }
+          });
       })
       .catch((error) => console.log(error.message));
   };
