@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const Coffee = ({ coffee }) => {
+const Coffee = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, quantity, supplier, taste, category, details, photoURL } =
     coffee;
 
@@ -23,12 +23,16 @@ const Coffee = ({ coffee }) => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
+
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
                 text: "Your Coffee has been deleted.",
                 icon: "success",
               });
+              const remaining = coffees.filter((coffee) => coffee._id !== _id);
+              setCoffees(remaining);
+              console.log(remaining);
             }
           });
       }
