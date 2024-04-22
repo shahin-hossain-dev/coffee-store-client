@@ -32,7 +32,7 @@ const Coffee = ({ coffee, coffees, setCoffees }) => {
               });
               const remaining = coffees.filter((coffee) => coffee._id !== _id);
               setCoffees(remaining);
-              console.log(remaining);
+              // console.log(remaining);
             }
           });
       }
