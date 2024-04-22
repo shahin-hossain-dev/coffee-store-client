@@ -4,12 +4,14 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { useLoaderData } from "react-router-dom";
 import Coffee from "./components/Coffee";
+import Header from "./components/Header";
 
 function App() {
   const loadedCoffees = useLoaderData();
   const [coffees, setCoffees] = useState(loadedCoffees);
   return (
     <>
+      <Header />
       <h1 className="text-5xl text-purple-600">
         Coffee All : {coffees.length}
       </h1>
