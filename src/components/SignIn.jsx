@@ -16,7 +16,7 @@ const SignIn = () => {
         const user = { email, lastLoggedInUser }; // email কে id এর মতো করে ব্যবহার করা হয়েছে। আপডেট করার জন্য।
 
         // update last logged in the database when sign in
-        fetch(`http://localhost:5000/user`, {
+        fetch(`https://coffee-store-server-sand-phi.vercel.app/user`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

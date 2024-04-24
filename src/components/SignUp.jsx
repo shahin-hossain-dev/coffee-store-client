@@ -17,7 +17,7 @@ const SignUp = () => {
         const createdAt = result.user?.metadata?.creationTime; //create time to set database
         const user = { email, createdAt }; //user info object to send database
         // send to server
-        fetch("http://localhost:5000/user", {
+        fetch("https://coffee-store-server-sand-phi.vercel.app/user", {
           method: "POST",
           headers: {
             "content-type": "application/json",
