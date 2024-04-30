@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import axios from "axios";
 
 const Users = () => {
   const loadedUsers = useLoaderData();
   const [users, setUsers] = useState(loadedUsers);
-  console.log(loadedUsers);
+  // console.log(loadedUsers);
+
+  useEffect(() => {
+    axios
+      .get("https://coffee-store-server-sand-phi.vercel.app/user")
+      .then((data) => {
+        console.log(data.data); // axios data এর মধ্যে data পাওয়া যায়।
+      });
+  }, []);
+
   const handleDeleteUser = (id) => {
+    // using fetch
     fetch(`https://coffee-store-server-sand-phi.vercel.app/user/${id}`, {
       method: "DELETE",
     })

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import axios from "axios";
 
 const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
@@ -13,10 +14,19 @@ const SignIn = () => {
       .then((result) => {
         // console.log(result.user);
         const lastLoggedInUser = result.user?.metadata?.lastSignInTime;
-        const user = { email, lastLoggedInUser }; // email কে id এর মতো করে ব্যবহার করা হয়েছে। আপডেট করার জন্য।
+        const user = { email, lastLoggedInUser }; // email কে id এর মতো করে ব্যবহার করা হয়েছে। email wise match করে আপডেট করার জন্য।
 
+        // update with axios
+
+        axios
+          .patch("https://coffee-store-server-sand-phi.vercel.app/user", user)
+          .then((data) => {
+            console.log(data.data);
+          });
+
+        // update with fetch
         // update last logged in the database when sign in
-        fetch(`https://coffee-store-server-sand-phi.vercel.app/user`, {
+        /* fetch(`https://coffee-store-server-sand-phi.vercel.app/user`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -24,7 +34,7 @@ const SignIn = () => {
           body: JSON.stringify(user),
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          .then((data) => console.log(data)); */
       })
       .catch((error) => console.log(error));
   };
